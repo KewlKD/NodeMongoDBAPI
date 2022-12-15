@@ -20,20 +20,20 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
-    console.log("DB connection successful");    
+    console.log("Connected to the database");    
 }).catch(err => {
-    console.log('Connection error', err);
+    console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
 
 // define a simple route
 app.get('/', (req, res) => {
-    res.json({"Welcome to my user api."});
+    res.json({"message": "Welcome to my user api."});
 });
 
 require('./app/routes/user.routes.js')(app);
 
 // listen for requests
 app.listen(3000, () => {
-    console.log("Listening on port 3000");
+    console.log("Server is listening on port 3000");
 });
